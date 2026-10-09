@@ -1,0 +1,11 @@
+{
+  "version": "0.1.0",
+  "notes": "Première release Giza — consultez le changelog sur GitHub.",
+  "pub_date": "2026-01-01T00:00:00Z",
+  "platforms": {
+    "windows-x86_64": {
+      "signature": "SIGNATURE_DU_FICHIER_.sig",
+      "url": "https://github.com/YOUR_ORG/giza/releases/download/v0.1.0/Giza_0.1.0_x64-setup.nsis.zip"
+    }
+  }
+}

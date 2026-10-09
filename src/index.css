@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: #0a0e14;
+  --color-surface-elevated: #141b26;
+  --color-border: #243044;
+  --color-accent: #f97316;
+  --color-accent-muted: #ea580c;
+  --color-accent-soft: #4f8cff;
+  --color-text: #eef2f8;
+  --color-text-muted: #8b9cb3;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: radial-gradient(ellipse 120% 80% at 50% -20%, #1a2840 0%, var(--color-surface) 55%);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .dp-card {
+    @apply rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)]/90 shadow-lg shadow-black/20 backdrop-blur-sm;
+  }
+
+  .dp-btn-primary {
+    @apply rounded-lg bg-[var(--color-accent)] px-4 py-2 font-medium text-white transition hover:bg-[var(--color-accent-muted)] disabled:opacity-50;
+  }
+
+  .dp-btn-secondary {
+    @apply rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm text-[var(--color-text)] transition hover:border-[var(--color-accent)]/50;
+  }
+
+  .dp-btn-ghost {
+    @apply rounded-lg px-3 py-1.5 text-[var(--color-text-muted)] transition hover:text-[var(--color-text)];
+  }
+
+  .dp-nav-link {
+    @apply flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors;
+  }
+
+  .dp-nav-link-active {
+    @apply border-l-2 border-[var(--color-accent)] bg-[var(--color-accent)]/15 pl-[10px] text-[var(--color-text)] shadow-inner shadow-black/10;
+  }
+
+  .dp-nav-link-idle {
+    @apply border-l-2 border-transparent text-[var(--color-text-muted)] hover:bg-[var(--color-surface)]/60 hover:text-[var(--color-text)];
+  }
+
+  .dp-titlebar {
+    @apply border-b border-[var(--color-border)]/80 bg-[var(--color-surface-elevated)]/70 px-6 py-2 backdrop-blur-md;
+  }
+
+  .giza-logo {
+    @apply relative inline-flex shrink-0 items-center justify-center;
+  }
+
+  .giza-logo__glow {
+    @apply pointer-events-none absolute inset-0 rounded-2xl bg-orange-500/50 opacity-40 blur-md;
+  }
+
+  .giza-logo__ring {
+    @apply pointer-events-none absolute -inset-0.5 rounded-[14px] border border-orange-400/25;
+  }
+
+  .giza-logo__img {
+    @apply relative z-10 h-full w-full rounded-xl object-cover shadow-lg shadow-orange-500/30 ring-1 ring-white/10;
+  }
+
+  .giza-logo--idle .giza-logo__glow {
+    animation: giza-glow-breathe 4s ease-in-out infinite;
+  }
+
+  .giza-logo--idle .giza-logo__img {
+    animation: giza-logo-breathe 4s ease-in-out infinite;
+  }
+
+  .giza-logo--active .giza-logo__glow {
+    animation: giza-glow-breathe 1.6s ease-in-out infinite;
+  }
+
+  .giza-logo--active .giza-logo__ring {
+    animation: giza-ring-spin 8s linear infinite;
+  }
+
+  .giza-logo--active .giza-logo__img {
+    animation: giza-logo-breathe 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes giza-logo-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes giza-glow-breathe {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes giza-ring-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.giza-mark-diamond--spin {
+  transform-origin: center center;
+  animation: giza-diamond-spin 2.8s linear infinite;
+}
+
+@keyframes giza-diamond-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .giza-mark-diamond--spin {
+    animation: none;
+  }
+  .giza-logo--idle .giza-logo__glow,
+  .giza-logo--idle .giza-logo__img,
+  .giza-logo--active .giza-logo__glow,
+  .giza-logo--active .giza-logo__ring,
+  .giza-logo--active .giza-logo__img {
+    animation: none;
+  }
+}
